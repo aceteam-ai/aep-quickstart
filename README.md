@@ -77,6 +77,22 @@ uv run python examples/06_custom_detector.py
 
 Watch the dashboard update in real-time as each example runs.
 
+## What the Proxy Sees
+
+The proxy is a reverse proxy — it reads the **full request AND full response**. It can block in either direction.
+
+| Data | Proxy Sees It? | Details |
+|------|:--------------:|---------|
+| User messages (input text) | **Yes** | Full message array from request |
+| LLM response (output text) | **Yes** | Full response including all choices |
+| Tool call requests | **Yes** | What functions the LLM asks to call |
+| Tool call results | **Yes** | Included in the next request's messages |
+| Token usage + cost | **Yes** | From response usage field |
+| Agent actions between calls | **No** | File writes, code exec happen inside the agent |
+| Application context | **No** | Unless sent via `X-AEP-*` headers (see example 05) |
+
+**The proxy sees every word going to and from the LLM.** It cannot see what the agent does *between* LLM calls.
+
 ## How It Works
 
 ```
@@ -85,10 +101,10 @@ Your Agent / Script
        |  OPENAI_BASE_URL=http://localhost:8080/v1
        v
 +------------------+
-|   AEP Proxy      |  <-- intercepts both directions
+|   AEP Proxy      |  <-- reads FULL request + response
 |                   |
 |  -> Check input   |  Block dangerous prompts BEFORE they reach OpenAI
-|  -> Forward call  |
+|  -> Forward call  |  (or block — call never leaves your machine)
 |  -> Check output  |  Block PII/toxic content BEFORE your agent sees it
 |  -> Track cost    |  Per-call and cumulative cost tracking
 |  -> Dashboard     |  Real-time web UI at /aep/
@@ -116,22 +132,32 @@ See **[examples/07_openclaw.md](examples/07_openclaw.md)** for step-by-step inst
 | `06_custom_detector.py` | Build your own safety detector |
 | `07_openclaw.md` | OpenClaw-specific setup guide |
 
-## Two Integration Paths
+## Two Layers: Proxy + SDK
 
-**Path 1: Proxy (recommended)** — zero code changes, works with any language/framework.
+Think **WireGuard + Tailscale**. WireGuard is the wire protocol. Tailscale adds identity on top.
+
+**Layer 1 — Proxy (free, zero code changes)**
+- Sees all LLM traffic (input, output, tool calls, cost)
+- Runs safety detectors, enforces PASS/FLAG/BLOCK
+- Works with any language, any framework
 ```bash
 uv run aceteam-aep proxy --port 8080
 export OPENAI_BASE_URL=http://localhost:8080/v1
 # your existing code just works
 ```
 
-**Path 2: Python SDK** — in-process wrapping for programmatic access.
+**Layer 2 — SDK + Headers (application context)**
+- Adds identity, governance, provenance
+- For things the proxy can't see (who is calling, data classification)
+- Via `X-AEP-*` HTTP headers (any language) or Python `wrap()`
 ```python
 from aceteam_aep import wrap
 client = wrap(openai.OpenAI())
 print(client.aep.cost_usd)
 print(client.aep.enforcement.action)
 ```
+
+Layer 1 gets you in the door. Layer 2 makes you enterprise-ready.
 
 ## Links
 
