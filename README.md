@@ -98,6 +98,12 @@ Your Agent / Script
   OpenAI / Anthropic API
 ```
 
+## Using with OpenClaw
+
+OpenClaw hardcodes its API base URL, so `OPENAI_BASE_URL` won't work. Instead, configure a custom model provider in OpenClaw pointing at `http://localhost:8080/v1`.
+
+See **[examples/07_openclaw.md](examples/07_openclaw.md)** for step-by-step instructions.
+
 ## Examples Overview
 
 | File | What It Shows |
@@ -108,6 +114,7 @@ Your Agent / Script
 | `04_wrap_sdk.py` | Python SDK alternative (no proxy needed) |
 | `05_governance_headers.sh` | Governance via HTTP headers (any language) |
 | `06_custom_detector.py` | Build your own safety detector |
+| `07_openclaw.md` | OpenClaw-specific setup guide |
 
 ## Two Integration Paths
 
