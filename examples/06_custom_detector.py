@@ -4,9 +4,14 @@ Detectors are just Python classes with a check() method.
 This example creates a compliance detector that flags competitor mentions.
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
 
+
 from aceteam_aep import wrap
+
 from aceteam_aep.safety.base import SafetySignal
 
 

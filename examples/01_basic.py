@@ -7,6 +7,9 @@ Check the dashboard at http://localhost:8080/aep/ — you should see the call
 appear with a green PASS badge and cost tracked.
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
 
 client = openai.OpenAI()  # reads OPENAI_BASE_URL from env

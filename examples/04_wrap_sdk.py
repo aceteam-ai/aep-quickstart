@@ -6,7 +6,11 @@ a proxy, you wrap your OpenAI client directly in Python.
 Both approaches use the same detectors and enforcement.
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
+
 
 from aceteam_aep import wrap
 

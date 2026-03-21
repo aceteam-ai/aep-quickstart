@@ -30,9 +30,10 @@ First run downloads ~300MB of safety models (cached after that).
 ### 3. Run it
 
 ```bash
-source .env
 uv run python main.py
 ```
+
+The `.env` file is loaded automatically (via `python-dotenv`). No need to `source` it.
 
 You'll see:
 - Call 1: normal question → **PASS**, cost tracked
@@ -44,7 +45,6 @@ That's it. Your agent now has a safety layer.
 ### 4. Try the proxy (zero code changes to your agent)
 
 ```bash
-source .env
 uv run aceteam-aep proxy --port 8080
 ```
 
@@ -53,7 +53,6 @@ Open **http://localhost:8080/aep/** — this is your live safety dashboard.
 In a new terminal:
 
 ```bash
-source .env
 export OPENAI_BASE_URL=http://localhost:8080/v1
 
 # Basic call — should show PASS on dashboard

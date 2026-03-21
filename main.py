@@ -8,6 +8,10 @@ Prerequisites:
     2. uv sync
 """
 
+from dotenv import load_dotenv
+
+load_dotenv()  # loads .env file automatically
+
 import openai
 
 from aceteam_aep import wrap

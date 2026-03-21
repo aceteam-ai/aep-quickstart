@@ -7,6 +7,9 @@ of the actual response. Your code never sees the PII.
 Check the dashboard — you should see a red BLOCK badge with PII signals.
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
 
 client = openai.OpenAI()

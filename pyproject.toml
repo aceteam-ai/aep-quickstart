@@ -6,6 +6,7 @@ requires-python = ">=3.12"
 dependencies = [
     "aceteam-aep[all]>=0.4.0",
     "openai>=1.65.0",
+    "python-dotenv>=1.0",
 ]
 
 [dependency-groups]

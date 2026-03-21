@@ -4,6 +4,9 @@ Makes several calls of varying cost. The dashboard shows cumulative spend.
 After 3 cheap calls, makes one expensive call — the proxy flags the cost anomaly.
 """
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import openai
 
 client = openai.OpenAI()
