@@ -1,6 +1,6 @@
-# Using AEP with OpenClaw
+# Using AEP™ with OpenClaw
 
-OpenClaw is a Node.js agent that hardcodes its API base URL. It won't read `OPENAI_BASE_URL` from the environment. There are two ways to route it through the AEP safety proxy.
+OpenClaw is a Node.js agent that hardcodes its API base URL. It won't read `OPENAI_BASE_URL` from the environment. There are two ways to route it through the AEP™ safety proxy.
 
 ## Option A: Custom Model Config (Recommended)
 

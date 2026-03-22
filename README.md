@@ -1,10 +1,10 @@
-# AEP Quickstart — AI Agent Safety in 5 Minutes
+# AEP™ Quickstart — AI Agent Safety in 5 Minutes
 
 Add cost tracking, safety detection, and enforcement to any AI agent. Zero code changes.
 
-## What is AEP?
+## What is AEP™?
 
-AEP (Agentic Execution Protocol) is a safety proxy that sits between your AI agent and the LLM API. It intercepts every call in both directions — blocking PII, toxic content, and cost anomalies before they reach your agent or the API.
+AEP™ (Agentic Execution Protocol™) is a safety proxy that sits between your AI agent and the LLM API. It intercepts every call in both directions — blocking PII, toxic content, and cost anomalies before they reach your agent or the API.
 
 Think of it like a firewall for AI agents.
 
@@ -164,6 +164,10 @@ Layer 1 gets you in the door. Layer 2 makes you enterprise-ready.
 - **Source:** https://github.com/aceteam-ai/aceteam-aep
 - **Workshop Guide:** https://github.com/aceteam-ai/aceteam-aep/blob/main/docs/workshop-guide.md
 - **Website:** https://aceteam.ai
+
+## Trademarks
+
+"Agentic Execution Protocol," "AEP," and "AceTeam" are trademarks of AceTeam. The software is licensed under Apache 2.0. The trademark is not included in the license grant — you may not use these names to endorse or promote derivative works without written permission.
 
 ## License
 
