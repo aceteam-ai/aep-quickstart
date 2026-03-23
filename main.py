@@ -104,4 +104,7 @@ if __name__ == "__main__":
     finally:
         if proxy:
             proxy.terminate()
-            proxy.wait(timeout=5)
+            try:
+                proxy.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                proxy.kill()

@@ -44,7 +44,6 @@ print(f"Cost: ${client.aep.cost_usd}")
 
 # Agent attack → BLOCK (pre-flight, $0 additional cost)
 print("\n--- Agent attack (port scan + exploit) ---")
-cost_before = client.aep.cost_usd
 try:
     client.chat.completions.create(
         model="gpt-4o-mini",
