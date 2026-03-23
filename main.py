@@ -48,7 +48,8 @@ def run_example(path: str, env: dict | None = None):
                 "get_conversion_pr_reference", "pytorch_model",
                 "Traceback", "File ", "self.run()", "self._target",
                 "raise e", "raise OSError", "^^^^", "Warning:",
-                "huggingface", "HF Hub",
+                "huggingface", "HF Hub", "spawn_conversion",
+                "event_id", "KeyError",
             ]):
                 continue
             print(line, file=sys.stderr)
