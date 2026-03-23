@@ -4,7 +4,7 @@ requires-python = ">=3.12"
 
 [[package]]
 name = "aceteam-aep"
-version = "0.5.2"
+version = "0.5.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anthropic" },
@@ -13,9 +13,9 @@ dependencies = [
     { name = "openai" },
     { name = "pydantic" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/23/89/d45efcddf1627fc982bcff687678e35775e4595ea7f6f064bb446fe382f5/aceteam_aep-0.5.2.tar.gz", hash = "sha256:cb74a44ca01e2a654dcd5865399c63355784445df5af2bc8d5ddd75bc85e21d9", size = 178752, upload-time = "2026-03-23T20:25:22.32Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/61/a7/f85ba38040e2c6b0f220d04a882f60dfe5231786648a772d64e4891ec8c3/aceteam_aep-0.5.3.tar.gz", hash = "sha256:fda4cd69863c77a5c6ac747f6073818279645697143b4583b11c4eb6250a71df", size = 182428, upload-time = "2026-03-23T20:57:32.592Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4a/8a/1b6ae38a09ee40b1ac1ff04f9801fcc752f2a2d93e3e1cbdd914955b8170/aceteam_aep-0.5.2-py3-none-any.whl", hash = "sha256:34e5d486b014aa58f3e835c7865c2283e130a27a34b7a85bb7d048c9021ef91b", size = 74658, upload-time = "2026-03-23T20:25:21.26Z" },
+    { url = "https://files.pythonhosted.org/packages/75/1a/dc7ab5eafcb1fec1c71c2f5282718d8f1fd336b6b0413c89a9b770962660/aceteam_aep-0.5.3-py3-none-any.whl", hash = "sha256:a3000b200e4f60c0e70614445581ce8ae0dfa7eb2e5ff64a51e14f4594aec8ce", size = 77444, upload-time = "2026-03-23T20:57:31.626Z" },
 ]
 
 [package.optional-dependencies]
@@ -23,6 +23,7 @@ all = [
     { name = "jinja2" },
     { name = "ollama" },
     { name = "openai" },
+    { name = "pyyaml" },
     { name = "starlette" },
     { name = "torch" },
     { name = "transformers" },
