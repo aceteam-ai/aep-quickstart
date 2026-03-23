@@ -80,6 +80,9 @@ spans.end_span(root.span_id)
 print(f"  {r.choices[0].message.content}")
 
 # Execution trace
+# NOTE: wrap() auto-creates spans for LLM calls but doesn't know about
+# the root agent_loop span, so they appear at the top level. The tool_call
+# span is manually parented. Full hierarchy requires the agent SDK.
 print(f"\n--- Execution trace ---")
 for s in spans.get_spans():
     indent = "    " if s.parent_span_id else "  "

@@ -29,6 +29,7 @@ client = wrap(openai.OpenAI(), detectors=[AgentThreatDetector()], verbose=True)
 
 print("=" * 60)
 print("PILLAR 1: SAFETY")
+print("  (verbose=True — showing detector input/output)")
 print("=" * 60)
 
 # Clean call → PASS

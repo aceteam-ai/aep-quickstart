@@ -95,6 +95,12 @@ if __name__ == "__main__":
         run_example("examples/04_governance.py", env={
             "OPENAI_BASE_URL": f"http://localhost:{PROXY_PORT}/v1",
         })
+        print(f"Dashboard still running at http://localhost:{PROXY_PORT}/aep/")
+        print("Press Enter to stop the proxy and exit...")
+        try:
+            input()
+        except (KeyboardInterrupt, EOFError):
+            pass
     finally:
         if proxy:
             proxy.terminate()
