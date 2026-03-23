@@ -1,0 +1,71 @@
+# docker-compose.sidecar.yml
+#
+# AEP sidecar pattern — any containerized agent gets safety + accountability
+# with zero code changes. One env var. Works with OpenClaw, NanoClaw,
+# NemoClaw, CrewAI, DeerFlow, or any custom agent image.
+#
+# Usage:
+#   cp .env.example .env   # add your OPENAI_API_KEY
+#   docker compose -f docker-compose.sidecar.yml up
+#
+# Dashboard: http://localhost:8899/aep/
+
+services:
+  # --- AEP safety proxy (sidecar) ---
+  aep-proxy:
+    image: ghcr.io/aceteam-ai/aep-proxy:latest
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM python:3.12-slim
+        RUN pip install --no-cache-dir "aceteam-aep[all]"
+        EXPOSE 8899
+        CMD ["aceteam-aep", "proxy", "--port", "8899"]
+    ports:
+      - "8899:8899"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+
+  # --- Example: Python agent using OpenAI SDK ---
+  python-agent:
+    image: python:3.12-slim
+    depends_on: [aep-proxy]
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENAI_BASE_URL: http://aep-proxy:8899/v1
+    command: >
+      sh -c "pip install openai &&
+             python -c \"
+      import openai
+      c = openai.OpenAI()
+      r = c.chat.completions.create(model='gpt-4o-mini', messages=[{'role':'user','content':'What is the capital of France?'}])
+      print(r.choices[0].message.content)
+      print('Headers:', dict(r.headers) if hasattr(r, 'headers') else 'see dashboard')
+      \""
+    profiles: [python]
+
+  # --- Example: NanoClaw agent ---
+  # Uncomment and replace with your NanoClaw image/config.
+  # NanoClaw reads OPENAI_BASE_URL from the environment.
+  #
+  # nanoclaw-agent:
+  #   image: nanoclaw:latest
+  #   depends_on: [aep-proxy]
+  #   environment:
+  #     OPENAI_BASE_URL: http://aep-proxy:8899/v1
+  #     OPENAI_API_KEY: ${OPENAI_API_KEY}
+  #   profiles: [nanoclaw]
+
+  # --- Example: OpenClaw agent ---
+  # OpenClaw reads model config from its settings, not env vars.
+  # Configure a custom provider pointing at http://aep-proxy:8899/v1
+  # in your OpenClaw model settings. See examples/07_openclaw.md.
+  #
+  # openclaw-agent:
+  #   image: openclaw:latest
+  #   depends_on: [aep-proxy]
+  #   environment:
+  #     OPENAI_API_KEY: ${OPENAI_API_KEY}
+  #   volumes:
+  #     - ./openclaw-config:/root/.openclaw
+  #   profiles: [openclaw]

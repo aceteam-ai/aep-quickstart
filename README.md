@@ -119,6 +119,31 @@ OpenClaw hardcodes its API base URL, so `OPENAI_BASE_URL` won't work. Instead, c
 
 See **[examples/07_openclaw.md](examples/07_openclaw.md)** for step-by-step instructions.
 
+## Using with NemoClaw / OpenShell
+
+AEP works as a sidecar to NemoClaw sandboxes. The OpenShell gateway routes inference through the AEP proxy — the sandbox has no direct internet access and no API keys.
+
+```bash
+# One-command demo (requires openshell CLI)
+./scripts/demo-nemoclaw.sh
+```
+
+Tested and verified: agent threat requests (port scanning, subprocess execution) are **blocked at the proxy before reaching the LLM**. Normal calls pass through with cost tracking and safety receipts.
+
+See **[examples/09_nemoclaw.md](examples/09_nemoclaw.md)** for architecture details and manual setup.
+
+## Sidecar Pattern (Docker)
+
+For any containerized agent, add AEP as a sidecar:
+
+```bash
+docker compose -f docker-compose.sidecar.yml up
+```
+
+One env var (`OPENAI_BASE_URL=http://aep-proxy:8899/v1`), zero code changes. Works with NanoClaw, CrewAI, DeerFlow, or any custom agent image.
+
+See **[examples/08_sidecar.md](examples/08_sidecar.md)** for the full pattern including K8s pod spec.
+
 ## Examples Overview
 
 | File | What It Shows |
@@ -130,6 +155,8 @@ See **[examples/07_openclaw.md](examples/07_openclaw.md)** for step-by-step inst
 | `05_governance_headers.sh` | Governance via HTTP headers (any language) |
 | `06_custom_detector.py` | Build your own safety detector |
 | `07_openclaw.md` | OpenClaw-specific setup guide |
+| `08_sidecar.md` | Docker sidecar pattern for any containerized agent |
+| `09_nemoclaw.md` | NemoClaw/OpenShell integration with AEP proxy |
 
 ## Two Layers: Proxy + SDK
 
