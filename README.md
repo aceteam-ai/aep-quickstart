@@ -48,7 +48,9 @@ That's it. Your agent now has a safety layer.
 uv run aceteam-aep proxy --port 8080
 ```
 
-Open **http://localhost:8080/aep/** — this is your live safety dashboard.
+Two dashboards:
+- **http://localhost:8080/aep/** — Developer view (per-call signals, cost, timeline)
+- **http://localhost:8080/aep/ciso** — Executive view (compliance frameworks, attestation, board-level summary)
 
 In a new terminal:
 
@@ -106,7 +108,7 @@ Your Agent / Script
 |  -> Forward call  |  (or block — call never leaves your machine)
 |  -> Check output  |  Block PII/toxic content BEFORE your agent sees it
 |  -> Track cost    |  Per-call and cumulative cost tracking
-|  -> Dashboard     |  Real-time web UI at /aep/
+|  -> Dashboard     |  Developer (/aep/) + Executive (/aep/ciso)
 +------------------+
        |
        v
