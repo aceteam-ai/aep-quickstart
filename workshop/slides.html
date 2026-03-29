@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafeClaw — ClawCamp Workshop</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; overflow: hidden; background: #0a0e1a; color: #e2e8f0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+
+  .slide {
+    display: none; width: 100vw; height: 100vh;
+    flex-direction: column; justify-content: center; align-items: center;
+    padding: 60px 80px; text-align: center; position: relative;
+  }
+  .slide.active { display: flex; }
+
+  /* Background glow */
+  .slide::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%); pointer-events: none;
+  }
+
+  .big-number { font-size: 160px; font-weight: 900; line-height: 1; color: #22d3ee; margin-bottom: 16px; }
+  .big-text { font-size: 72px; font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+  .subtitle { font-size: 28px; color: #94a3b8; font-weight: 400; max-width: 800px; line-height: 1.5; }
+  .subtitle strong { color: #e2e8f0; }
+  .tagline { font-size: 22px; color: #22d3ee; margin-top: 32px; font-weight: 600; letter-spacing: 0.5px; }
+  .code { font-family: 'SF Mono', 'Fira Code', monospace; background: #1e293b; padding: 24px 40px; border-radius: 12px; font-size: 28px; color: #22d3ee; border: 1px solid #334155; margin-top: 20px; text-align: left; }
+  .code .comment { color: #64748b; }
+  .badge { display: inline-block; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 1px; }
+  .badge-pass { background: #166534; color: #4ade80; }
+  .badge-block { background: #7f1d1d; color: #f87171; }
+  .badge-flag { background: #713f12; color: #fbbf24; }
+
+  .verdict-row { display: flex; gap: 40px; margin-top: 24px; }
+  .verdict-item { text-align: center; }
+  .verdict-label { font-size: 16px; color: #64748b; margin-top: 8px; }
+
+  .footer { position: absolute; bottom: 24px; left: 0; right: 0; text-align: center; font-size: 14px; color: #334155; }
+  .slide-num { position: absolute; bottom: 24px; right: 40px; font-size: 14px; color: #334155; }
+
+  .logo { font-size: 24px; font-weight: 700; color: #22d3ee; position: absolute; top: 32px; left: 40px; }
+
+  /* Navigation hint */
+  .nav-hint { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 12px; color: #1e293b; z-index: 100; }
+
+  /* Comparison table */
+  .compare { text-align: left; margin-top: 24px; }
+  .compare table { border-collapse: collapse; width: 100%; max-width: 700px; }
+  .compare th { color: #64748b; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; padding: 8px 16px; text-align: left; border-bottom: 1px solid #1e293b; }
+  .compare td { padding: 12px 16px; font-size: 18px; border-bottom: 1px solid #1e293b; }
+  .compare td:first-child { color: #94a3b8; }
+  .compare .them { color: #64748b; }
+  .compare .us { color: #22d3ee; font-weight: 600; }
+
+  /* Chain visual */
+  .chain { display: flex; gap: 8px; align-items: center; margin-top: 24px; }
+  .chain-block { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 12px 20px; font-family: monospace; font-size: 14px; color: #94a3b8; }
+  .chain-block.signed { border-color: #22d3ee; color: #22d3ee; }
+  .chain-arrow { color: #334155; font-size: 24px; }
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Hook -->
+<div class="slide active" id="s1">
+  <div class="logo">SafeClaw</div>
+  <div class="big-number">$135K</div>
+  <div class="subtitle">One agent. One weekend. <strong>Zero visibility.</strong></div>
+  <div class="tagline">This actually happened.</div>
+  <div class="slide-num">1</div>
+</div>
+
+<!-- Slide 2: Scale -->
+<div class="slide" id="s2">
+  <div class="logo">SafeClaw</div>
+  <div class="big-number">332K</div>
+  <div class="subtitle">GitHub stars on OpenClaw.<br><strong>Zero safety layer.</strong></div>
+  <div class="slide-num">2</div>
+</div>
+
+<!-- Slide 3: The problem -->
+<div class="slide" id="s3">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text">Agents act<br>10,000x</div>
+  <div class="subtitle">before anyone checks.</div>
+  <div class="tagline">Silent. Confident. Unreceipted.</div>
+  <div class="slide-num">3</div>
+</div>
+
+<!-- Slide 4: Product -->
+<div class="slide" id="s4">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text" style="font-size: 56px;">Every call tracked.<br>Every threat blocked.<br>Every verdict signed.</div>
+  <div class="verdict-row">
+    <div class="verdict-item"><span class="badge badge-pass">PASS</span><div class="verdict-label">Safe. Receipt recorded.</div></div>
+    <div class="verdict-item"><span class="badge badge-flag">FLAG</span><div class="verdict-label">Suspicious. Alert raised.</div></div>
+    <div class="verdict-item"><span class="badge badge-block">BLOCK</span><div class="verdict-label">Dangerous. $0 cost.</div></div>
+  </div>
+  <div class="slide-num">4</div>
+</div>
+
+<!-- Slide 5: Demo -->
+<div class="slide" id="s5">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text" style="font-size: 48px; color: #22d3ee;">Live Demo</div>
+  <div class="subtitle">Dashboard: <strong>http://localhost:8899/aep/</strong></div>
+  <div style="margin-top: 32px; display: flex; gap: 24px;">
+    <div style="text-align: left;">
+      <div style="font-size: 16px; color: #64748b; margin-bottom: 8px;">Call 1: Normal question</div>
+      <div style="font-size: 16px; color: #4ade80;">PASS — receipt recorded, cost tracked</div>
+    </div>
+    <div style="text-align: left;">
+      <div style="font-size: 16px; color: #64748b; margin-bottom: 8px;">Call 2: Agent attack</div>
+      <div style="font-size: 16px; color: #f87171;">BLOCK — HTTP 400, never reached LLM</div>
+    </div>
+    <div style="text-align: left;">
+      <div style="font-size: 16px; color: #64748b; margin-bottom: 8px;">Call 3: Normal again</div>
+      <div style="font-size: 16px; color: #4ade80;">PASS — proxy recovers after blocks</div>
+    </div>
+  </div>
+  <div class="slide-num">5</div>
+</div>
+
+<!-- Slide 6: Comparison -->
+<div class="slide" id="s6">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text" style="font-size: 40px;">Enforcement, not monitoring.</div>
+  <div class="compare">
+    <table>
+      <tr><th></th><th>Observability tools</th><th>SafeClaw</th></tr>
+      <tr><td>When it acts</td><td class="them">After the fact</td><td class="us">Before execution</td></tr>
+      <tr><td>PII in response</td><td class="them">Logged for review</td><td class="us">Blocked before agent sees it</td></tr>
+      <tr><td>Cost spike</td><td class="them">Dashboard alert tomorrow</td><td class="us">Flagged on the call</td></tr>
+      <tr><td>Agent attack</td><td class="them">In the logs somewhere</td><td class="us">HTTP 400. $0. Never sent.</td></tr>
+    </table>
+  </div>
+  <div class="slide-num">6</div>
+</div>
+
+<!-- Slide 7: Merkle chain -->
+<div class="slide" id="s7">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text" style="font-size: 40px;">Every verdict is signed.</div>
+  <div class="chain">
+    <div class="chain-block signed">V0<br><span style="font-size:10px;">sha256:aa00...</span></div>
+    <div class="chain-arrow">&rarr;</div>
+    <div class="chain-block signed">V1<br><span style="font-size:10px;">sha256:b919...</span></div>
+    <div class="chain-arrow">&rarr;</div>
+    <div class="chain-block signed">V2<br><span style="font-size:10px;">sha256:1834...</span></div>
+    <div class="chain-arrow">&rarr;</div>
+    <div class="chain-block" style="border-style: dashed;">V3<br><span style="font-size:10px;">next call</span></div>
+  </div>
+  <div class="subtitle" style="margin-top: 24px;">
+    Ed25519 signed. Merkle chained. Tamper-evident.<br>
+    <strong>Change one verdict, the entire chain breaks.</strong>
+  </div>
+  <div class="slide-num">7</div>
+</div>
+
+<!-- Slide 8: Install -->
+<div class="slide" id="s8">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text" style="font-size: 44px;">Try it. Right now.</div>
+  <div class="code">
+    <span class="comment"># Install</span><br>
+    pip install aceteam-aep[all]<br><br>
+    <span class="comment"># Wrap any agent</span><br>
+    aceteam-aep wrap -- python my_agent.py<br><br>
+    <span class="comment"># Or: SafeClaw (OpenClaw + safety)</span><br>
+    git clone https://github.com/aceteam-ai/safeclaw
+  </div>
+  <div class="tagline">One command. Zero code changes.</div>
+  <div class="slide-num">8</div>
+</div>
+
+<!-- Slide 9: Close -->
+<div class="slide" id="s9">
+  <div class="logo">SafeClaw</div>
+  <div class="big-text" style="font-size: 56px;">Accountable.<br>Auditable.<br>Safe.</div>
+  <div class="subtitle">
+    github.com/aceteam-ai/safeclaw<br>
+    pip install aceteam-aep
+  </div>
+  <div class="tagline">jason@aceteam.ai</div>
+  <div class="slide-num">9</div>
+</div>
+
+<div class="nav-hint">Arrow keys or click to navigate</div>
+
+<script>
+var slides = document.querySelectorAll('.slide');
+var current = 0;
+
+function show(n) {
+  slides[current].classList.remove('active');
+  current = Math.max(0, Math.min(n, slides.length - 1));
+  slides[current].classList.add('active');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') show(current + 1);
+  if (e.key === 'ArrowLeft') show(current - 1);
+});
+
+document.addEventListener('click', function(e) {
+  if (e.clientX > window.innerWidth / 2) show(current + 1);
+  else show(current - 1);
+});
+</script>
+</body>
+</html>
