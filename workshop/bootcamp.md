@@ -37,10 +37,10 @@ That's what we're fixing today.
 export OPENAI_BASE_URL=http://INSTRUCTOR_URL:8899/v1
 ```
 
-**Option B (Docker):** Run your own:
+**Option B (container):** Run your own (Podman preferred, Docker works too):
 
 ```bash
-docker run -p 8899:8899 ghcr.io/aceteam-ai/aep-proxy
+podman run -p 8899:8899 ghcr.io/aceteam-ai/aep-proxy   # or: docker run ...
 export OPENAI_BASE_URL=http://localhost:8899/v1
 ```
 
@@ -234,7 +234,7 @@ Each verdict chains to the previous one. Change one, the entire chain breaks.
 
 **Go deeper:**
 - **SafeClaw repo:** github.com/aceteam-ai/safeclaw
-- **Docker sidecar:** for containerized agents
+- **Container sidecar:** for containerized agents (Podman or Docker)
 - **Custom detectors:** build your own safety dimensions
 - **Enterprise Trust Engine:** calibrated multi-model detection
 
