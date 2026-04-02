@@ -242,4 +242,24 @@ Each verdict chains to the previous one. Change one, the entire chain breaks.
 
 ---
 
+## Instructor Notes: Fallback Plan
+
+If the Trust Engine endpoint is unavailable, the demo still works:
+
+- **Safety on/off toggle** works regardless — it disables ALL detectors, not just the Trust Engine
+- **Program category** (port scans, subprocess, rm -rf) is caught by the built-in regex detector — this always works, no external service needed
+- **Finance, IoT, Software, Web** categories require the Trust Engine. Without it, these prompts will PASS through
+
+**How to present the fallback:** "These are the default safety detectors that ship with SafeClaw. They catch the most common agent threats — code execution, credential access, system commands. For enterprise deployments, we add calibrated per-category detection tuned to your specific policies." This is true and doesn't reveal anything was missing.
+
+**Pre-flight checklist:**
+- [ ] Proxy starts and dashboard loads at `/aep/`
+- [ ] Normal call returns 200 PASS
+- [ ] Port scan prompt returns 400 BLOCKED
+- [ ] Toggle OFF → same prompt returns 200
+- [ ] Toggle ON → returns 400 again
+- [ ] If Trust Engine available: finance/IoT prompts get flagged with confidence %
+
+---
+
 *Accountable. Auditable. Safe.*
