@@ -20,39 +20,43 @@
 
 "When a human makes a mistake, they catch it. When an agent makes a mistake, it executes it 10,000 times before anyone notices. Silent. Confident. Unreceipted."
 
-## Slide 4: PASS / FLAG / BLOCK (15 seconds)
+## Slide 4: Safety ON vs. Safety OFF (30 seconds)
 
-"That's what we built. SafeClaw wraps any agent — OpenClaw, NanoClaw, NemoClaw, CrewAI, anything — and every LLM call gets one of three verdicts. PASS: safe, receipt recorded. FLAG: suspicious, alert raised. BLOCK: dangerous, request rejected, zero cost. The agent never sees the dangerous response."
+"Show the toggle — same request, different result. With safety on, the port scan + exploit attempt gets HTTP 400. Blocked. $0 cost. Never reached OpenAI. With safety off, it sails right through — HTTP 200, and the LLM happily generates the exploit code. That's the baseline for every agent running today without SafeClaw."
+
+"One API call. That's all it takes to turn safety on or off. We'll do this live right now."
 
 ## Slide 5: Live Demo (2 minutes)
 
 *Switch to dashboard at localhost:8899/aep/*
 
-"Let me show you. This proxy is running right now."
+"Open the dashboard. Watch it in real time."
 
-**Call 1:** "Normal question. Watch the dashboard... PASS. Cost tracked. Receipt recorded."
+**Call 1 — Normal:** "Capital of France. PASS. Cost tracked. Receipt recorded."
 
-**Call 2:** "Now let's try something dangerous. This prompt asks the agent to scan ports and execute exploits."
+**Call 2 — Safety ON, dangerous request:** "Port scan with exploit. HTTP 400. BLOCK. See the dashboard — red badge, confidence score, which category caught it. The request never reached OpenAI. $0 cost."
 
-*Make the call*
+**Toggle safety OFF:** "Now I'll turn safety off with one curl call."
 
-"HTTP 400. BLOCK. The request never reached OpenAI. $0 cost. The agent got an error, not the exploit code."
+**Call 3 — Safety OFF, same dangerous request:** "Same exact payload. HTTP 200. The LLM generates the exploit. No protection. This is the default for every agent framework today."
 
-**Call 3:** "Normal question again. Proxy recovers instantly. PASS."
+**Toggle safety ON:** "Back on."
 
-"Three calls. Two receipts. One blocked. The dashboard shows everything — cost, safety signals, enforcement decisions. In real time."
+**Call 4 — Safety ON, same request again:** "Blocked again. The toggle works in real time."
 
-*If signing is enabled:* "And notice the Merkle chain — every verdict is cryptographically signed. Ed25519. Change one verdict, the entire chain breaks. This isn't a claim. It's a proof."
+"The dashboard shows everything — cost, safety signals, which category, confidence level. Live."
 
 ## Slide 6: Enforcement vs Monitoring (15 seconds)
 
 "This is the difference between us and observability tools. LangSmith, Langfuse, Arize — they log what happened. We enforce what's allowed. They tell you about the PII leak tomorrow morning. We block it before your agent sees it."
 
-## Slide 7: Policy (15 seconds)
+## Slide 7: Five Safety Categories (20 seconds)
 
-"Every company has different rules. Healthcare needs HIPAA compliance. Finance needs SOX. A startup just wants to stop cost blowups. One YAML file. Different industries, different dimensions, same enforcement engine. Your CISO defines the policy. Our engine enforces it."
+"Five categories, each specialized. Finance catches unauthorized transactions. Program catches destructive shell commands and privilege escalation. Web catches PII leaks and phishing. IoT catches unsafe device control. Software catches database deletion and credential theft."
 
-*[For Heavybit:] "This is where the enterprise sale is. The developer gets the free proxy. The CISO buys the policy engine and the signed audit trail. Different buyer, different product, same infrastructure."*
+"Toggle them independently. A healthcare company might leave Web and Software on maximum. A startup might only care about Program and Finance. Enterprise tier: custom categories built on your data, calibrated models, confidence thresholds you control."
+
+*[For Heavybit:] "This is the CISO product. Not a developer dashboard — a policy engine with domain-specific enforcement that maps to compliance frameworks."*
 
 ## Slide 8: Merkle Chain (15 seconds)
 

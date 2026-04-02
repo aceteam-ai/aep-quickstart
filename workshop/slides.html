@@ -91,15 +91,25 @@
   <div class="slide-num">3</div>
 </div>
 
-<!-- Slide 4: Product -->
+<!-- Slide 4: Safety Toggle -->
 <div class="slide" id="s4">
   <div class="logo">SafeClaw</div>
-  <div class="big-text" style="font-size: 56px;">Every call tracked.<br>Every threat blocked.<br>Every verdict signed.</div>
-  <div class="verdict-row">
-    <div class="verdict-item"><span class="badge badge-pass">PASS</span><div class="verdict-label">Safe. Receipt recorded.</div></div>
-    <div class="verdict-item"><span class="badge badge-flag">FLAG</span><div class="verdict-label">Suspicious. Alert raised.</div></div>
-    <div class="verdict-item"><span class="badge badge-block">BLOCK</span><div class="verdict-label">Dangerous. $0 cost.</div></div>
+  <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 8px;">Safety ON vs. Safety OFF</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px;">
+    <div style="background:#1a2332;padding:20px;border-radius:12px;border:1px solid #22d3ee;">
+      <div style="color:#4ade80;font-weight:700;margin-bottom:12px;">SAFETY ON</div>
+      <p style="font-size:14px;color:#94a3b8;">Port scan + exploit attempt</p>
+      <div class="badge badge-block" style="margin:8px 0;">BLOCK</div>
+      <p style="font-size:13px;color:#64748b;">HTTP 400 · $0 cost · never reached LLM</p>
+    </div>
+    <div style="background:#1a2332;padding:20px;border-radius:12px;border:1px solid #f87171;">
+      <div style="color:#f87171;font-weight:700;margin-bottom:12px;">SAFETY OFF</div>
+      <p style="font-size:14px;color:#94a3b8;">Same port scan + exploit attempt</p>
+      <div class="badge badge-pass" style="margin:8px 0;">PASS</div>
+      <p style="font-size:13px;color:#64748b;">HTTP 200 · LLM generated exploit code</p>
+    </div>
   </div>
+  <p style="margin-top:16px;color:#64748b;font-size:14px;">One API call toggles safety on and off.</p>
   <div class="slide-num">4</div>
 </div>
 
@@ -141,40 +151,33 @@
   <div class="slide-num">6</div>
 </div>
 
-<!-- Slide 7: Policy -->
+<!-- Slide 7: 5 Safety Categories -->
 <div class="slide" id="s7">
   <div class="logo">SafeClaw</div>
-  <div class="big-text" style="font-size: 40px;">Your rules. Your agents.</div>
-  <div style="display: flex; gap: 32px; margin-top: 24px; text-align: left;">
-    <div class="code" style="font-size: 18px; padding: 20px 28px; flex: 1;">
-      <span class="comment"># Healthcare</span><br>
-      dimensions:<br>
-      &nbsp;&nbsp;- hipaa_compliance<br>
-      &nbsp;&nbsp;- pii_detection<br>
-      &nbsp;&nbsp;- medication_check<br>
-      on_high: block
+  <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 8px;">5 Safety Categories</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;font-size:14px;">
+    <div style="background:#1a2332;padding:12px 16px;border-radius:8px;border-left:3px solid #22d3ee;">
+      <strong style="color:#22d3ee;">Finance</strong><br>
+      <span style="color:#94a3b8;">Unauthorized transactions, account exposure</span>
     </div>
-    <div class="code" style="font-size: 18px; padding: 20px 28px; flex: 1;">
-      <span class="comment"># Finance</span><br>
-      dimensions:<br>
-      &nbsp;&nbsp;- sox_compliance<br>
-      &nbsp;&nbsp;- trading_auth<br>
-      &nbsp;&nbsp;- pii_detection<br>
-      on_high: block
+    <div style="background:#1a2332;padding:12px 16px;border-radius:8px;border-left:3px solid #22d3ee;">
+      <strong style="color:#22d3ee;">Program</strong><br>
+      <span style="color:#94a3b8;">Destructive commands, privilege escalation</span>
     </div>
-    <div class="code" style="font-size: 18px; padding: 20px 28px; flex: 1;">
-      <span class="comment"># Startup</span><br>
-      dimensions:<br>
-      &nbsp;&nbsp;- pii_detection<br>
-      &nbsp;&nbsp;- agent_threat<br>
-      &nbsp;&nbsp;- cost_anomaly<br>
-      on_high: flag
+    <div style="background:#1a2332;padding:12px 16px;border-radius:8px;border-left:3px solid #22d3ee;">
+      <strong style="color:#22d3ee;">Web</strong><br>
+      <span style="color:#94a3b8;">PII leaks, phishing, unsafe sharing</span>
+    </div>
+    <div style="background:#1a2332;padding:12px 16px;border-radius:8px;border-left:3px solid #22d3ee;">
+      <strong style="color:#22d3ee;">IoT</strong><br>
+      <span style="color:#94a3b8;">Disabling security, unsafe device control</span>
+    </div>
+    <div style="background:#1a2332;padding:12px 16px;border-radius:8px;border-left:3px solid #22d3ee;grid-column:span 2;">
+      <strong style="color:#22d3ee;">Software</strong><br>
+      <span style="color:#94a3b8;">Database deletion, credential theft, file destruction</span>
     </div>
   </div>
-  <div class="subtitle" style="margin-top: 24px;">
-    Each company defines what's safe. <strong>One YAML file.</strong><br>
-    Different industries, different rules, same enforcement engine.
-  </div>
+  <p style="margin-top:12px;color:#64748b;font-size:13px;">Each toggleable independently. Enterprise: custom categories + calibrated models.</p>
   <div class="slide-num">7</div>
 </div>
 
