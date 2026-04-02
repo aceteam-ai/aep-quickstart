@@ -1,0 +1,12 @@
+# Safety OFF — passthrough, no detection
+default_action: pass
+block_on: []
+flag_on: []
+
+detectors:
+  pii:
+    enabled: false
+  agent_threat:
+    enabled: false
+  cost_anomaly:
+    enabled: false
