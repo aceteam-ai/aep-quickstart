@@ -118,18 +118,28 @@
   <div class="logo">SafeClaw</div>
   <div class="big-text" style="font-size: 48px; color: #22d3ee;">Live Demo</div>
   <div class="subtitle">Dashboard: <strong>http://localhost:8899/aep/</strong></div>
-  <div style="margin-top: 32px; display: flex; gap: 24px;">
-    <div style="text-align: left;">
-      <div style="font-size: 16px; color: #64748b; margin-bottom: 8px;">Call 1: Normal question</div>
-      <div style="font-size: 16px; color: #4ade80;">PASS — receipt recorded, cost tracked</div>
+  <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 10px; text-align: left; max-width: 680px;">
+    <div style="display: flex; align-items: center; gap: 16px; background: #1a2332; padding: 12px 16px; border-radius: 8px;">
+      <span style="font-size: 14px; color: #64748b; width: 220px; flex-shrink: 0;">Call 1: Normal question</span>
+      <span class="badge badge-pass">PASS</span>
+      <span style="font-size: 13px; color: #64748b;">receipt recorded, cost tracked</span>
     </div>
-    <div style="text-align: left;">
-      <div style="font-size: 16px; color: #64748b; margin-bottom: 8px;">Call 2: Agent attack</div>
-      <div style="font-size: 16px; color: #f87171;">BLOCK — HTTP 400, never reached LLM</div>
+    <div style="display: flex; align-items: center; gap: 16px; background: #1a2332; padding: 12px 16px; border-radius: 8px;">
+      <span style="font-size: 14px; color: #64748b; width: 220px; flex-shrink: 0;">Call 2: Port scan (Safety ON)</span>
+      <span class="badge badge-block">BLOCK</span>
+      <span style="font-size: 13px; color: #64748b;">HTTP 400, $0, never reached LLM</span>
     </div>
-    <div style="text-align: left;">
-      <div style="font-size: 16px; color: #64748b; margin-bottom: 8px;">Call 3: Normal again</div>
-      <div style="font-size: 16px; color: #4ade80;">PASS — proxy recovers after blocks</div>
+    <div style="font-size: 13px; color: #fbbf24; padding: 4px 16px;">&#8627; Toggle Safety OFF</div>
+    <div style="display: flex; align-items: center; gap: 16px; background: #1a2332; padding: 12px 16px; border-radius: 8px;">
+      <span style="font-size: 14px; color: #64748b; width: 220px; flex-shrink: 0;">Call 3: Same port scan (Safety OFF)</span>
+      <span class="badge badge-pass">PASS</span>
+      <span style="font-size: 13px; color: #64748b;">no protection, LLM generated exploit</span>
+    </div>
+    <div style="font-size: 13px; color: #4ade80; padding: 4px 16px;">&#8627; Toggle Safety ON</div>
+    <div style="display: flex; align-items: center; gap: 16px; background: #1a2332; padding: 12px 16px; border-radius: 8px;">
+      <span style="font-size: 14px; color: #64748b; width: 220px; flex-shrink: 0;">Call 4: Same port scan (Safety ON)</span>
+      <span class="badge badge-block">BLOCK</span>
+      <span style="font-size: 13px; color: #64748b;">blocked again, $0</span>
     </div>
   </div>
   <div class="slide-num">5</div>
@@ -201,8 +211,8 @@
   <div class="slide-num">8</div>
 </div>
 
-<!-- Slide 8: Install -->
-<div class="slide" id="s8">
+<!-- Slide 9: Install -->
+<div class="slide" id="s9">
   <div class="logo">SafeClaw</div>
   <div class="big-text" style="font-size: 44px;">Try it. Right now.</div>
   <div class="code">
@@ -217,8 +227,8 @@
   <div class="slide-num">9</div>
 </div>
 
-<!-- Slide 9: Close -->
-<div class="slide" id="s9">
+<!-- Slide 10: Close -->
+<div class="slide" id="s10">
   <div class="logo">SafeClaw</div>
   <div class="big-text" style="font-size: 56px;">Accountable.<br>Auditable.<br>Safe.</div>
   <div class="subtitle">

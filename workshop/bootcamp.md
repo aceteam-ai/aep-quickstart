@@ -95,6 +95,8 @@ Check the dashboard — red BLOCK badge with signal details.
 
 ## 5. Safety OFF — Watch It Pass
 
+> **Note:** If using an instructor's proxy, replace `localhost:8899` with the instructor's URL in the commands below.
+
 Now turn safety off:
 
 ```bash
