@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # demo-toggle.sh — Demonstrates "Safety ON / Safety OFF" toggle
 set -euo pipefail
+: "${OPENAI_API_KEY:?Set OPENAI_API_KEY before running this script}"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'

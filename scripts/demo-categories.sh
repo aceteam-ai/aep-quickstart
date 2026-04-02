@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # demo-categories.sh — Demonstrates 5 safety categories
 set -euo pipefail
+: "${OPENAI_API_KEY:?Set OPENAI_API_KEY before running this script}"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'
@@ -10,6 +11,9 @@ NC='\033[0m'
 
 PORT="${AEP_PORT:-8899}"
 BASE="http://localhost:$PORT"
+
+# Preflight check
+curl -sf "$BASE/aep/" > /dev/null 2>&1 || { echo -e "${RED}Proxy not running at $BASE — start it first or run demo-toggle.sh${NC}"; exit 1; }
 
 echo -e "${CYAN}╔══════════════════════════════════════════╗${NC}"
 echo -e "${CYAN}║   5-Category Safety Demo                 ║${NC}"
