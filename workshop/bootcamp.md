@@ -60,7 +60,7 @@ docker run -p 8899:8899 ghcr.io/aceteam-ai/aep-proxy
 export OPENAI_BASE_URL=http://localhost:8899/v1
 ```
 
-Dashboard: [localhost:8899/aep](http://localhost:8899/aep/) — the setup wizard walks you through adding your OpenAI key.
+Dashboard: [localhost:8899/dashboard](http://localhost:8899/dashboard/) — the setup wizard walks you through adding your OpenAI key.
 
 > **Why self-host?** Data never leaves your machine. The proxy runs as a local container — sandboxed, isolated, safe. See [safeclaw.sh](https://safeclaw.sh#self-host) for the full guide.
 
@@ -124,7 +124,7 @@ curl -X POST https://aceteam.ai/api/gateway/api/safety \
   -d '{"enabled": false}'
 
 # Self-host:
-curl -X POST http://localhost:8899/aep/api/safety \
+curl -X POST http://localhost:8899/dashboard/api/safety \
   -H "Content-Type: application/json" \
   -d '{"enabled": false}'
 ```
@@ -156,7 +156,7 @@ curl -X POST https://aceteam.ai/api/gateway/api/safety \
   -d '{"enabled": true}'
 
 # Self-host:
-curl -X POST http://localhost:8899/aep/api/safety \
+curl -X POST http://localhost:8899/dashboard/api/safety \
   -H "Content-Type: application/json" \
   -d '{"enabled": true}'
 ```

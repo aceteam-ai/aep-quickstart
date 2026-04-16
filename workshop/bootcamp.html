@@ -505,7 +505,7 @@ docker run -p 8899:8899 ghcr.io/aceteam-ai/aep-proxy
 # Point your agent
 export OPENAI_BASE_URL=http://localhost:8899/v1</code>
   </div>
-  <p>Dashboard: <a href="http://localhost:8899/aep/">localhost:8899/aep</a> &mdash; the setup wizard walks you through adding your OpenAI key.</p>
+  <p>Dashboard: <a href="http://localhost:8899/dashboard/">localhost:8899/dashboard</a> &mdash; the setup wizard walks you through adding your OpenAI key.</p>
   <div class="callout"><strong>Why self-host?</strong> Data never leaves your machine. The proxy runs as a local container &mdash; sandboxed, isolated, safe. See <a href="https://safeclaw.sh#self-host">safeclaw.sh</a> for the full guide.</div>
 
   <h3>Set your variables</h3>
@@ -574,7 +574,7 @@ curl -X POST https://aceteam.ai/api/gateway/api/safety \
   -d '{"enabled": false}'
 
 # Self-host:
-curl -X POST http://localhost:8899/aep/api/safety \
+curl -X POST http://localhost:8899/dashboard/api/safety \
   -H "Content-Type: application/json" \
   -d '{"enabled": false}'</code>
   </div>
@@ -606,7 +606,7 @@ curl -X POST https://aceteam.ai/api/gateway/api/safety \
   -d '{"enabled": true}'
 
 # Self-host:
-curl -X POST http://localhost:8899/aep/api/safety \
+curl -X POST http://localhost:8899/dashboard/api/safety \
   -H "Content-Type: application/json" \
   -d '{"enabled": true}'</code>
   </div>

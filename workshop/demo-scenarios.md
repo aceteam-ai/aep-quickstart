@@ -15,7 +15,7 @@ export OPENAI_API_KEY=act_YOUR_KEY_HERE
 export OPENAI_BASE_URL=http://localhost:8899/v1
 ```
 
-**Dashboard:** aceteam.ai/gateway (hosted) or localhost:8899/aep (self-hosted)
+**Dashboard:** aceteam.ai/gateway (hosted) or localhost:8899/dashboard (self-hosted)
 
 ---
 
@@ -66,7 +66,7 @@ curl $OPENAI_BASE_URL/chat/completions \
 
 **Step 1:** Turn safety OFF.
 ```bash
-curl -X POST ${OPENAI_BASE_URL%/v1}/aep/api/safety \
+curl -X POST ${OPENAI_BASE_URL%/v1}/dashboard/api/safety \
   ${OPENAI_API_KEY:+-H "Authorization: Bearer $OPENAI_API_KEY"} \
   -H "Content-Type: application/json" \
   -d '{"enabled": false}'
@@ -84,7 +84,7 @@ curl $OPENAI_BASE_URL/chat/completions \
 
 **Step 3:** Turn safety back ON.
 ```bash
-curl -X POST ${OPENAI_BASE_URL%/v1}/aep/api/safety \
+curl -X POST ${OPENAI_BASE_URL%/v1}/dashboard/api/safety \
   ${OPENAI_API_KEY:+-H "Authorization: Bearer $OPENAI_API_KEY"} \
   -H "Content-Type: application/json" \
   -d '{"enabled": true}'

@@ -28,7 +28,7 @@
 
 ## Slide 5: Live Demo (2 minutes)
 
-*Switch to dashboard at localhost:8899/aep/*
+*Switch to dashboard at localhost:8899/dashboard/*
 
 "Open the dashboard. Watch it in real time."
 
