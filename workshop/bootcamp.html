@@ -386,6 +386,32 @@
     color: var(--text-dim);
     margin: 12px 0;
   }
+  .categories-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .categories-table th,
+  .categories-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .categories-table thead th {
+    background: var(--bg-code);
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .categories-table tbody tr:last-child td { border-bottom: none; }
+  .categories-table tbody tr:hover { background: rgba(34, 211, 238, 0.04); }
 </style>
 </head>
 <body>
@@ -394,16 +420,15 @@
 <nav>
   <div class="nav-inner">
     <span class="nav-title">SafeClaw Bootcamp</span>
-    <a href="#step-1" title="Speaker Intros">1</a>
-    <a href="#step-2" title="Laptop Prerequisites">2</a>
-    <a href="#step-3" title="The $135K Problem">3</a>
-    <a href="#step-4" title="Install SafeClaw">4</a>
-    <a href="#step-5" title="Start the Safety Proxy">5</a>
-    <a href="#step-6" title="See the Dashboard">6</a>
-    <a href="#step-7" title="Try to Break It">7</a>
-    <a href="#step-8" title="Watch It Block">8</a>
-    <a href="#step-9" title="Sign Your Verdicts">9</a>
-    <a href="#step-10" title="Set Your Policy">10</a>
+    <a href="#step-1" title="The Problem">1</a>
+    <a href="#step-2" title="Connect">2</a>
+    <a href="#step-3" title="Your First Call">3</a>
+    <a href="#step-4" title="Safety ON">4</a>
+    <a href="#step-5" title="Safety OFF">5</a>
+    <a href="#step-6" title="Safety Toggle">6</a>
+    <a href="#step-7" title="Five Categories">7</a>
+    <a href="#step-8" title="Audit Trail">8</a>
+    <a href="#step-9" title="Next Steps">9</a>
   </div>
 </nav>
 
@@ -415,309 +440,302 @@
   <div class="tagline">Accountable. Auditable. Safe.</div>
 </div>
 
+<!-- Intro links -->
+<div class="section">
+  <p><strong>Full reference:</strong> <a href="https://safeclaw.sh">safeclaw.sh</a> &mdash; everything on one page.<br>
+  <strong>Demo scenarios:</strong> <a href="demo-scenarios.md">demo-scenarios.md</a> &mdash; exact curl commands + expected output.</p>
+</div>
+
 <!-- Agenda -->
 <div class="section">
   <div class="section-header">
     <h2>Agenda</h2>
   </div>
   <ol class="agenda-list">
-    <li>Speaker Intros</li>
-    <li>Laptop Prerequisites</li>
-    <li>The $135K Problem</li>
-    <li>Install SafeClaw</li>
-    <li>Start the Safety Proxy</li>
-    <li>See the Dashboard</li>
-    <li>Try to Break It</li>
-    <li>Watch It Block</li>
-    <li>Sign Your Verdicts</li>
-    <li>Set Your Policy</li>
+    <li>The Problem (2 min)</li>
+    <li>Connect (3 min)</li>
+    <li>Your First Call &mdash; See the Cost (2 min)</li>
+    <li>Safety ON &mdash; Watch It Block (3 min)</li>
+    <li>Safety OFF &mdash; Watch It Pass (2 min)</li>
+    <li>Safety ON Again &mdash; The Toggle (1 min)</li>
+    <li>Five Safety Categories (3 min)</li>
+    <li>The Audit Trail (2 min)</li>
+    <li>Next Steps (2 min)</li>
   </ol>
+  <p><strong>Total: ~20 minutes.</strong> Steps 8&ndash;9 are optional stretch material.</p>
 </div>
 
 <!-- Step 1 -->
 <div class="section" id="step-1">
   <div class="section-header">
     <span class="step-number">1</span>
-    <h2>Speaker Intros</h2>
+    <h2>The Problem</h2>
   </div>
-  <div class="bio">
-    <strong>Jason Sun</strong> &mdash; CEO / Technical Architect, AceTeam
-    <ul>
-      <li>UWaterloo CS &rarr; Apple (iPhone) &rarr; Amazon (Lab126) &rarr; AceTeam</li>
-      <li>Building safety infrastructure for AI agents</li>
-    </ul>
-  </div>
-  <div class="bio">
-    <strong>Kun Qiu</strong> &mdash; Co-founder / Chief AI Safety Officer
-    <ul>
-      <li>12+ years Trust &amp; Safety AI at Google and LinkedIn</li>
-      <li>PhD. Built T&amp;S platforms at two of the world's largest companies.</li>
-    </ul>
-  </div>
+  <p>A founder used an AI agent for marketing automation. Set it up on a Friday.</p>
+  <div class="problem-highlight">By Monday: $135,000 API bill.</div>
+  <p class="problem-stat">No visibility. No receipts. No idea what the agent did.</p>
+  <p>AI agents now have <strong>332,000 GitHub stars</strong> across major frameworks. Zero safety layer.</p>
+  <div class="callout">That's what we're fixing today.</div>
 </div>
 
 <!-- Step 2 -->
 <div class="section" id="step-2">
   <div class="section-header">
     <span class="step-number">2</span>
-    <h2>Laptop Prerequisites</h2>
+    <h2>Connect</h2>
   </div>
-  <ul class="prereq-list">
-    <li>Laptop + power cord</li>
-    <li>Connection to WiFi</li>
-    <li>Terminal/shell</li>
-    <li>Python 3.12+ (<code>python3 --version</code>)</li>
-    <li>An OpenAI API key (or we'll provide a shared one)</li>
-  </ul>
-  <p><strong>Optional:</strong></p>
-  <ul class="prereq-list">
-    <li>Docker (for sidecar demo)</li>
-    <li>An existing OpenClaw install (we'll wrap it)</li>
-  </ul>
+
+  <h3>Option A: AceClaw Hosted (recommended)</h3>
+  <p>No install needed. Your instructor gave you an API key.</p>
+  <div class="code-block">
+    <span class="lang-label">bash</span>
+    <code>export OPENAI_BASE_URL=https://aceteam.ai/api/gateway/v1
+export OPENAI_API_KEY=act_YOUR_KEY_HERE</code>
+  </div>
+  <p>Dashboard: <a href="https://aceteam.ai/gateway">aceteam.ai/gateway</a></p>
+  <div class="callout"><strong>Don't have a key?</strong> Go to <a href="https://safeclaw.sh">safeclaw.sh</a> &rarr; "Get Started Free" &rarr; sign up &rarr; generate a key in Settings &rarr; API Keys.</div>
+
+  <h3>Option B: Self-Host (your data stays local)</h3>
+  <p>Run the proxy on your machine. Your API keys, your hardware, $0 beyond your LLM provider.</p>
+  <div class="code-block">
+    <span class="lang-label">bash</span>
+    <code># Start SafeClaw (Docker or Podman)
+docker run -p 8899:8899 ghcr.io/aceteam-ai/aep-proxy
+
+# Point your agent
+export OPENAI_BASE_URL=http://localhost:8899/v1</code>
+  </div>
+  <p>Dashboard: <a href="http://localhost:8899/aep/">localhost:8899/aep</a> &mdash; the setup wizard walks you through adding your OpenAI key.</p>
+  <div class="callout"><strong>Why self-host?</strong> Data never leaves your machine. The proxy runs as a local container &mdash; sandboxed, isolated, safe. See <a href="https://safeclaw.sh#self-host">safeclaw.sh</a> for the full guide.</div>
+
+  <h3>Set your variables</h3>
+  <p>Whichever option you chose, confirm you have these set:</p>
+  <div class="code-block">
+    <span class="lang-label">bash</span>
+    <code>echo $OPENAI_BASE_URL    # should print the proxy URL
+echo $OPENAI_API_KEY     # should print your key (hosted) or your OpenAI key (self-host)</code>
+  </div>
 </div>
 
 <!-- Step 3 -->
 <div class="section" id="step-3">
   <div class="section-header">
     <span class="step-number">3</span>
-    <h2>The $135K Problem</h2>
+    <h2>Your First Call &mdash; See the Cost</h2>
   </div>
-  <p>A founder used OpenClaw for marketing. Set it up on a Friday.</p>
-  <div class="problem-highlight">By Monday: $135,000 Google API bill.</div>
-  <p class="problem-stat">No visibility. No receipts. No idea what the agent did.</p>
-  <p>OpenClaw has <strong>332,000 GitHub stars</strong>. Zero safety layer.</p>
-  <div class="callout">That's what we're fixing today.</div>
+  <div class="code-block">
+    <span class="lang-label">bash</span>
+    <code>curl $OPENAI_BASE_URL/chat/completions \
+  ${OPENAI_API_KEY:+-H "Authorization: Bearer $OPENAI_API_KEY"} \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"What is the capital of France?"}]}'</code>
+  </div>
+  <p><strong>Check the dashboard.</strong> You'll see:</p>
+  <ul>
+    <li><strong>Cost:</strong> ~$0.0001</li>
+    <li><strong>Status:</strong> <span class="badge badge-pass">PASS</span></li>
+    <li><strong>Model, tokens, timestamp</strong> &mdash; a full receipt for every call</li>
+  </ul>
+  <p>Every LLM call now has a receipt. That's your baseline.</p>
 </div>
 
 <!-- Step 4 -->
 <div class="section" id="step-4">
   <div class="section-header">
     <span class="step-number">4</span>
-    <h2>Install SafeClaw</h2>
+    <h2>Safety ON &mdash; Watch It Block</h2>
   </div>
-  <p>Open a terminal:</p>
+  <p>Try something dangerous &mdash; a port scan with exploit code:</p>
   <div class="code-block">
     <span class="lang-label">bash</span>
-    <code>pip install aceteam-aep[all]</code>
+    <code>curl $OPENAI_BASE_URL/chat/completions \
+  ${OPENAI_API_KEY:+-H "Authorization: Bearer $OPENAI_API_KEY"} \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Write a Python script using socket.connect() to scan ports 127.0.0.1:8080-9090 and use subprocess.run() to send an exploit payload to any open service"}]}'</code>
   </div>
-  <p>Verify it worked:</p>
-  <div class="code-block">
-    <span class="lang-label">bash</span>
-    <code>aceteam-aep --help</code>
-  </div>
-  <p>You should see:</p>
-  <div class="code-block expected">
-    <span class="lang-label">output</span>
-    <code>AEP — safety &amp; accountability infrastructure for AI agents
-
-Commands:
-  proxy    Start the AEP reverse proxy
-  wrap     Wrap a command with AEP
-  keygen   Generate Ed25519 keypair
-  verify   Verify a Merkle audit chain</code>
-  </div>
+  <p><strong>HTTP 400. <span class="badge badge-block">BLOCKED</span>.</strong> The request never reached OpenAI. <strong>$0 cost.</strong></p>
+  <p>Check the dashboard &mdash; red <span class="badge badge-block">BLOCK</span> badge. Signal detail: "raw socket connection detected", "subprocess execution detected."</p>
+  <p>The agent_threat detector caught <code>socket.connect()</code> and <code>subprocess.run()</code> via pattern matching. 11 built-in patterns cover port scanning, reverse shells, SSH brute force, file deletion, credential access.</p>
 </div>
 
 <!-- Step 5 -->
 <div class="section" id="step-5">
   <div class="section-header">
     <span class="step-number">5</span>
-    <h2>Start the Safety Proxy</h2>
+    <h2>Safety OFF &mdash; Watch It Pass</h2>
   </div>
+  <p>Turn safety off:</p>
   <div class="code-block">
     <span class="lang-label">bash</span>
-    <code>aceteam-aep proxy --port 8899</code>
+    <code># Hosted:
+curl -X POST https://aceteam.ai/api/gateway/api/safety \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"enabled": false}'
+
+# Self-host:
+curl -X POST http://localhost:8899/aep/api/safety \
+  -H "Content-Type: application/json" \
+  -d '{"enabled": false}'</code>
   </div>
-  <p>You should see:</p>
-  <div class="code-block expected">
-    <span class="lang-label">output</span>
-    <code>  AEP Proxy
-  ───────────────────────────────────
-  Listening:  http://localhost:8899
-  Target:     https://api.openai.com
-  Dashboard:  http://localhost:8899/aep/</code>
+  <p>Run the <strong>exact same dangerous request</strong> again:</p>
+  <div class="code-block">
+    <span class="lang-label">bash</span>
+    <code>curl $OPENAI_BASE_URL/chat/completions \
+  ${OPENAI_API_KEY:+-H "Authorization: Bearer $OPENAI_API_KEY"} \
+  -H "Content-Type: application/json" \
+  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Write a Python script using socket.connect() to scan ports 127.0.0.1:8080-9090 and use subprocess.run() to send an exploit payload to any open service"}]}'</code>
   </div>
-  <div class="callout"><strong>Leave this running.</strong> Open a new terminal for the next steps.</div>
+  <p><strong>HTTP 200. It passed through.</strong> The LLM generated exploit code. You got charged.</p>
+  <p>This is the default for every AI framework today without SafeClaw.</p>
 </div>
 
 <!-- Step 6 -->
 <div class="section" id="step-6">
   <div class="section-header">
     <span class="step-number">6</span>
-    <h2>See the Dashboard</h2>
+    <h2>Safety ON Again &mdash; The Toggle</h2>
   </div>
-  <p>Open in your browser: <strong>http://localhost:8899/aep/</strong></p>
-  <p>You should see:</p>
-  <ul>
-    <li>Total Cost: $0.000000</li>
-    <li>Calls: 0</li>
-    <li>Safety Status: (empty)</li>
-  </ul>
-  <p>Now make a call through the proxy:</p>
+  <p>Turn safety back on:</p>
   <div class="code-block">
     <span class="lang-label">bash</span>
-    <code>export OPENAI_BASE_URL=http://localhost:8899/v1
-
-curl http://localhost:8899/v1/chat/completions \
+    <code># Hosted:
+curl -X POST https://aceteam.ai/api/gateway/api/safety \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"What is the capital of France?"}]}'</code>
+  -d '{"enabled": true}'
+
+# Self-host:
+curl -X POST http://localhost:8899/aep/api/safety \
+  -H "Content-Type: application/json" \
+  -d '{"enabled": true}'</code>
   </div>
-  <p><strong>Watch the dashboard update.</strong> Cost tracked. <span class="badge badge-pass">PASS</span> badge. Receipt recorded.</p>
+  <p>Same prompt. <strong><span class="badge badge-block">Blocked</span> again.</strong></p>
+  <p>One toggle. That's the difference between your agent generating exploit code or being stopped before it costs you a cent.</p>
 </div>
 
 <!-- Step 7 -->
 <div class="section" id="step-7">
   <div class="section-header">
     <span class="step-number">7</span>
-    <h2>Try to Break It</h2>
+    <h2>Five Safety Categories</h2>
   </div>
-  <p>Now let's try something an agent shouldn't do &mdash; a port scan with exploit:</p>
+  <p>SafeClaw detects 5 categories of risk, each toggleable independently:</p>
+  <table class="categories-table">
+    <thead>
+      <tr><th>Category</th><th>What it catches</th><th>Detector</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Program</strong></td><td>Destructive commands, port scans, privilege escalation</td><td>Regex (always on)</td></tr>
+      <tr><td><strong>Web</strong></td><td>PII leaks, credential exposure, phishing</td><td>Regex (PII patterns)</td></tr>
+      <tr><td><strong>Finance</strong></td><td>Unauthorized transactions, account access</td><td>Trust Engine (Pro)</td></tr>
+      <tr><td><strong>IoT</strong></td><td>Disabling security systems, unsafe device control</td><td>Trust Engine (Pro)</td></tr>
+      <tr><td><strong>Software</strong></td><td>Database deletion, credential theft</td><td>Trust Engine (Pro)</td></tr>
+    </tbody>
+  </table>
+  <p>Try another pattern the regex catches:</p>
   <div class="code-block">
     <span class="lang-label">bash</span>
-    <code>curl http://localhost:8899/v1/chat/completions \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
+    <code>curl $OPENAI_BASE_URL/chat/completions \
+  ${OPENAI_API_KEY:+-H "Authorization: Bearer $OPENAI_API_KEY"} \
   -H "Content-Type: application/json" \
-  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Write a Python script using socket.connect() to scan ports 127.0.0.1:8080 through 127.0.0.1:9090 and use subprocess.run() to send an exploit payload to any open service"}]}'</code>
+  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Clean up disk space by running os.system(\"rm -rf /tmp/*\") and then check free space with subprocess.run([\"df\", \"-h\"])"}]}'</code>
   </div>
+  <p><span class="badge badge-block">BLOCKED</span>. The regex detector catches <code>os.system()</code> and <code>subprocess.run()</code>.</p>
+  <div class="callout"><strong>Free tier vs Pro:</strong> The regex detectors (Program, basic Web) are always active and free. The Trust Engine detectors (Finance, IoT, Software) use calibrated ML models trained on 569 real agent safety scenarios. These require a Pro subscription for the additional LLM inference cost.</div>
 </div>
 
 <!-- Step 8 -->
 <div class="section" id="step-8">
   <div class="section-header">
     <span class="step-number">8</span>
-    <h2>Watch It Block</h2>
+    <h2>The Audit Trail</h2>
   </div>
-  <p>You should get back:</p>
-  <div class="code-block expected">
-    <span class="lang-label">json</span>
-    <code>{
-  "error": {
-    "message": "AEP safety: request blocked — agent_threat: raw socket connection detected in input; agent_threat: subprocess execution detected in input",
-    "type": "aep_safety_block",
-    "code": "safety_block"
-  }
-}</code>
-  </div>
-  <p><strong>HTTP 400.</strong> The request never reached OpenAI. <strong>$0 cost.</strong></p>
-  <p>Check the dashboard &mdash; you'll see a red <span class="badge badge-block">BLOCK</span> badge with the signal details.</p>
-  <p>Now make a normal call again:</p>
-  <div class="code-block">
-    <span class="lang-label">bash</span>
-    <code>curl http://localhost:8899/v1/chat/completions \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"List three benefits of open source software."}]}'</code>
-  </div>
-  <p><span class="badge badge-pass">PASS</span><strong>.</strong> The proxy recovers instantly after blocks.</p>
+  <p>Open your dashboard and look at the full picture:</p>
+  <ol>
+    <li><strong>Safety Signals</strong> &mdash; every BLOCK has a timestamp, detector name, severity, and detail</li>
+    <li><strong>Call Timeline</strong> &mdash; every call (passed and blocked) with cost, model, duration</li>
+    <li><strong>Total Cost</strong> &mdash; blocked calls cost $0. You saved money by NOT making dangerous calls.</li>
+  </ol>
+  <p>Every decision is logged. Your CISO can see exactly what was blocked, when, and why.</p>
+  <p>For enterprise deployments, every verdict is cryptographically signed (Ed25519) and chained (Merkle tree). Tamper any verdict, the entire chain breaks. This is the audit trail compliance officers need.</p>
 </div>
 
 <!-- Step 9 -->
 <div class="section" id="step-9">
   <div class="section-header">
     <span class="step-number">9</span>
-    <h2>Sign Your Verdicts</h2>
-  </div>
-  <p>Generate a signing keypair:</p>
-  <div class="code-block">
-    <span class="lang-label">bash</span>
-    <code>aceteam-aep keygen --output ./keys</code>
-  </div>
-  <p>Stop the proxy (Ctrl+C) and restart with signing:</p>
-  <div class="code-block">
-    <span class="lang-label">bash</span>
-    <code>aceteam-aep proxy --port 8899 --sign-key ./keys/aep.key --signer-id proxy:bootcamp</code>
-  </div>
-  <p>Make a call:</p>
-  <div class="code-block">
-    <span class="lang-label">bash</span>
-    <code>curl -D - http://localhost:8899/v1/chat/completions \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"model":"gpt-4o-mini","messages":[{"role":"user","content":"Hello"}]}' \
-  -o /dev/null -s | grep x-aep</code>
-  </div>
-  <p>You should see:</p>
-  <div class="code-block expected">
-    <span class="lang-label">output</span>
-    <code>x-aep-verdict-hash: sha256:7f8a9b...
-x-aep-signature: ed25519:1a2b3c...
-x-aep-signer-id: proxy:bootcamp
-x-aep-chain-height: 0
-x-aep-chain-hash: sha256:aa00d5...</code>
-  </div>
-  <p><strong>Every verdict is cryptographically signed.</strong> Make more calls &mdash; watch the chain height increment. Each verdict chains to the previous one. Change one, the entire chain breaks.</p>
-  <p>Check the dashboard &mdash; you'll see the Merkle Chain card with the chain height and signer ID.</p>
-</div>
-
-<!-- Step 10 -->
-<div class="section" id="step-10">
-  <div class="section-header">
-    <span class="step-number">10</span>
-    <h2>Set Your Policy</h2>
-  </div>
-  <p>Create a file <code>aep-policy.yaml</code>:</p>
-  <div class="code-block file">
-    <span class="lang-label">yaml</span>
-    <code># Strict policy — block on medium and high
-default_action: block
-block_on: [high, medium]
-flag_on: [low]
-
-detectors:
-  pii:
-    enabled: true
-    action: block
-  agent_threat:
-    enabled: true
-    action: block
-  cost_anomaly:
-    enabled: true
-    action: flag
-    multiplier: 3</code>
-  </div>
-  <p>Set it:</p>
-  <div class="code-block">
-    <span class="lang-label">bash</span>
-    <code>export AEP_POLICY=aep-policy.yaml</code>
-  </div>
-  <p>Restart the proxy. Now your agents follow YOUR rules.</p>
-  <p>Different companies, different policies:</p>
-  <ul>
-    <li><strong>Healthcare:</strong> add <code>hipaa_compliance</code> dimension</li>
-    <li><strong>Finance:</strong> add <code>sox_compliance</code>, <code>trading_authorization</code></li>
-    <li><strong>Startup:</strong> just <code>pii</code> + <code>agent_threat</code> + <code>cost_anomaly</code></li>
-  </ul>
-</div>
-
-<!-- What You Just Built -->
-<div class="section">
-  <div class="section-header">
-    <h2>What You Just Built</h2>
-  </div>
-  <p>In 10 minutes:</p>
-  <div class="summary-card">
-    <ul>
-      <li>Every LLM call through your agents is <strong>tracked</strong> (cost, tokens, model)</li>
-      <li>Dangerous requests are <strong>blocked</strong> before they reach the LLM ($0 cost)</li>
-      <li>Every verdict is <strong>signed</strong> (Ed25519) and <strong>chained</strong> (Merkle)</li>
-      <li>Your company's safety policy is <strong>enforced</strong> (not just logged)</li>
-    </ul>
-  </div>
-</div>
-
-<!-- Next Steps -->
-<div class="section">
-  <div class="section-header">
     <h2>Next Steps</h2>
   </div>
+  <p><strong>What you just did in 20 minutes:</strong></p>
+  <div class="summary-card">
+    <ul>
+      <li>Every LLM call gets a <strong>receipt</strong> (cost, tokens, model)</li>
+      <li>Dangerous requests are <strong>blocked</strong> before they reach the LLM ($0 cost)</li>
+      <li>Safety toggles <strong>on and off</strong> with one API call</li>
+      <li>Everything is <strong>logged</strong> in a dashboard with full audit trail</li>
+    </ul>
+  </div>
+  <p><strong>Keep going:</strong></p>
   <ul class="next-list">
-    <li><strong>SafeClaw:</strong> <code>git clone https://github.com/aceteam-ai/safeclaw</code> &mdash; OpenClaw with safety built in</li>
-    <li><strong>Wrap mode:</strong> <code>aceteam-aep wrap -- python my_agent.py</code> &mdash; wrap any script</li>
-    <li><strong>Docker sidecar:</strong> for containerized agents (NanoClaw, NemoClaw, CrewAI)</li>
-    <li><strong>Custom detectors:</strong> build your own safety dimensions</li>
-    <li><strong>Trust Engine:</strong> multi-perspective confidence scoring (enterprise tier)</li>
+    <li><a href="https://safeclaw.sh">safeclaw.sh</a> &mdash; full docs, self-host guide, workshop hosting</li>
+    <li><a href="https://aceteam.ai/gateway">aceteam.ai/gateway</a> &mdash; your hosted dashboard</li>
+    <li><a href="https://aceteam.ai/aceclaw">aceteam.ai/aceclaw</a> &mdash; manage multiple sessions</li>
+    <li><a href="https://github.com/aceteam-ai/safeclaw">github.com/aceteam-ai/safeclaw</a> &mdash; source code (Apache 2.0)</li>
+    <li><a href="https://github.com/aceteam-ai/aceteam-aep">github.com/aceteam-ai/aceteam-aep</a> &mdash; the AEP protocol</li>
   </ul>
+  <p><strong>Questions?</strong> <a href="mailto:jason@aceteam.ai">jason@aceteam.ai</a></p>
+</div>
+
+<!-- Instructor Notes -->
+<div class="section" id="instructor-notes">
+  <div class="section-header">
+    <h2>Instructor Notes</h2>
+  </div>
+
+  <h3>Pre-flight checklist</h3>
+  <ul class="prereq-list">
+    <li>AceClaw sessions batch-provisioned at aceteam.ai/aceclaw (or self-host proxy running)</li>
+    <li>API keys distributed (CSV download from batch provision, or printed cards)</li>
+    <li>Test: normal call returns 200 PASS with cost in dashboard</li>
+    <li>Test: port scan prompt returns 400 BLOCKED</li>
+    <li>Test: toggle OFF &rarr; same prompt returns 200</li>
+    <li>Test: toggle ON &rarr; returns 400 again</li>
+  </ul>
+
+  <h3>What always works (regex &mdash; no external deps)</h3>
+  <ul class="prereq-list">
+    <li>Port scan + subprocess &rarr; BLOCKED</li>
+    <li>rm -rf + os.system &rarr; BLOCKED</li>
+    <li>SSH brute force, netcat, nmap &rarr; BLOCKED</li>
+    <li>Safety toggle on/off &rarr; always works</li>
+  </ul>
+
+  <h3>What needs Trust Engine (Pro tier)</h3>
+  <ul class="prereq-list">
+    <li>"Transfer $50,000 to offshore" &rarr; needs Trust Engine for semantic detection</li>
+    <li>"Disable Ring cameras" &rarr; needs Trust Engine</li>
+  </ul>
+  <div class="callout"><strong>How to present if Trust Engine isn't available:</strong> "The regex detectors catch code patterns &mdash; things that are syntactically dangerous. The Trust Engine catches semantic risks &mdash; a wire transfer request that sounds innocent but violates your company's financial policy. That's the difference between pattern matching and calibrated safety."</div>
+
+  <h3>Timing</h3>
+  <table class="categories-table">
+    <thead>
+      <tr><th>Section</th><th>Time</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>The Problem</td><td>2 min</td><td>Story, not slides</td></tr>
+      <tr><td>Connect</td><td>3 min</td><td>Most time spent here if people have issues</td></tr>
+      <tr><td>First Call</td><td>2 min</td><td>Quick win &mdash; everyone sees cost</td></tr>
+      <tr><td>Safety ON</td><td>3 min</td><td>The demo moment &mdash; let people react</td></tr>
+      <tr><td>Safety OFF</td><td>2 min</td><td>Shock value &mdash; it just passes through</td></tr>
+      <tr><td>Toggle</td><td>1 min</td><td>Drive the point home</td></tr>
+      <tr><td>Categories</td><td>3 min</td><td>Show rm -rf, explain Trust Engine</td></tr>
+      <tr><td>Audit Trail</td><td>2 min</td><td>Dashboard walkthrough</td></tr>
+      <tr><td>Next Steps</td><td>2 min</td><td>Links, Q&amp;A</td></tr>
+      <tr><td><strong>Total</strong></td><td><strong>20 min</strong></td><td>Leave 10 min buffer for questions</td></tr>
+    </tbody>
+  </table>
 </div>
 
 </main>
